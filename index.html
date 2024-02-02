@@ -1,0 +1,312 @@
+ 
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+       
+        <title>Oasis Task 1 </title>
+        <style>
+            * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #a8d0e6; /* Shades of blue */
+    
+}
+
+.container {
+    padding: 20px;
+    width: 360px;
+    background:  #fc97f7;  /* Orange */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 13px;
+    overflow: hidden;
+}
+
+.container .input-box {
+    height: 161px;
+    width: 100%;
+}
+
+.container .btns-box {
+    height: 360px;
+}
+
+.container .btns-box button {
+    all: unset;
+    height: 60px;
+    width: 65px;
+    background: #262930;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    float: left;
+    margin-left: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    position: relative;
+    left: 14px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+ 
+
+.container .btns-box .with-bg-btn{
+background:#FFA500;        
+}
+
+.container .input-box input{
+all:unset;
+height:58px;
+width:317px;
+position:relative;
+top:70px;
+text-align:right;
+font-size:20px;
+color:white;
+}
+
+.container .input-box .input-value{
+height:31px;
+font-size:25px;
+}
+
+.container .input-box .result{
+font-weight:600;    
+font-size:40px;
+}
+
+.container .scientific-btns {
+    height: 340px;
+    width: 252px;
+    border-radius: 7px;
+    padding: 15px;
+    margin-left: 8px;
+    position: absolute;
+    bottom: 30px;
+    left: -225px;
+    transition: all 0.2s;
+    background: #FFA500;  /* Dark green */
+}
+
+.container .scientific-btns.active {
+    left: 5px;
+}
+
+.container .scientific-btns .scien-btn {
+    all: unset;
+    height: 35px;
+    width: 45px;
+    float: left;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 30px;
+    font-size: 21px;
+    margin-left: 15px;
+    position: relative;
+    top: -13px;
+    cursor: pointer;
+}
+
+.container .scientific-btns .back-btn {
+    height: 60px;
+    width: 85px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background: #FFA500;/*#fcba04; /* Bright orange */
+    position: absolute;
+    right: -75px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    background: #FFA500; /* Dark green */
+}
+
+::selection {
+    background: rgba(100, 149, 237, 0.8);
+    color: white;
+}
+/* Add hover effect for all buttons */
+.container .btns-box button:hover,
+.container .scientific-btns .scien-btn:hover {
+    background-color: #93450e; /* Darker color on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Add hover effect for the "=" button */
+.container .btns-box .with-bg-btn:hover {
+    background-color:#da7c1e; /*#0f7f12; /* Darker color on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Add hover effect for the back button */
+.container .scientific-btns .back-btn:hover {
+     /* Darker color on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+
+
+        </style>
+</head>
+
+<body>
+<div class="container">
+ <div class="input-box">
+  <input type="text" class="input-value" placeholder="0" value="" readonly>
+  <input type="text" class="result" value="" placeholder="0" readonly>
+ </div>   
+ <div class="btns-box">
+      <button class="with-bg-btn" id="ac" onclick="input.value = ''; result.value = '0' ">AC</button>
+      <button class="with-bg-btn" id="del-btn" onclick="backSpace()"><i class="fa-solid fa-delete-left"></i></button>
+      <button class="btn with-bg-btn">%</button>
+      <button class="btn with-bg-btn">/</button>
+      <button class="btn">1</button>
+      <button class="btn">2</button>
+      <button class="btn">3</button>
+      <button class="btn with-bg-btn">×</button>
+      <button class="btn">4</button>
+      <button class="btn">5</button>
+      <button class="btn">6</button>
+      <button class="btn with-bg-btn">+</button>
+      <button class="btn">7</button>
+      <button class="btn">8</button>
+      <button class="btn">9</button>
+    <button class="btn with-bg-btn">-</button>
+      <button class="btn no-btn"></button>
+      <button class="btn">0</button>
+      <button class="btn">.</button>
+      <button class="btns with-bg-btn" onclick="calculate()">=</button>  
+ </div>
+  <div class="scientific-btns">
+    <button class="scien-btn btn">(</button>
+    <button class="scien-btn btn">)</button>
+    <button class="scien-btn" onclick="e()">e</button>
+               <button class="scien-btn" onclick="sin()">sin</button>
+           <button class="scien-btn" onclick="cos()">cos</button>
+           <button class="scien-btn" onclick="tan()">tan</button>
+           <button class="scien-btn" onclick="fact()">x!</button>
+           <button class="scien-btn" onclick="pi()">π</button>
+           <button class="scien-btn" onclick="log()">log</button>
+         
+
+           <button class="scien-btn" onclick="root()">√</button>
+          
+           <button class="scien-btn" onclick="pow()">x<span style="position: relative; bottom: .4em; right: .1em;">2</span></button>
+           <button class="scien-btn" onclick="pow()">x<span style="position: relative; bottom: .4em; right: .1em;">n</span></button>
+           
+           <div class="back-btn">
+               <i class="fa-solid fa-chevron-right"></i>
+           </div>         
+  </div>
+
+
+
+
+  
+</div>
+<script src="Scientific.js"></script>
+<script>
+let backBtn = document.querySelector('.container .back-btn');
+let scientificBtnsBox = document.querySelector('.container .scientific-btns');
+let input = document.querySelector('.container .input-box .input-value');
+let result = document.querySelector('.container .input-box .result');
+let container = document.querySelector('.container');
+let allBtns = document.querySelectorAll('.container .btn');
+
+let backSpace = () => {
+        input.value = input.value.substr(0, input.value.length - 1);
+}
+
+
+for (let item of allBtns) {
+        item.addEventListener('click', (e) => {
+                let btnText = e.target.innerHTML;
+                if (btnText == '×') {
+                        btnText = '*';
+                }
+
+                if (btnText == '÷') {
+                        btnText = '/';
+                }
+
+                input.value += btnText;
+        })
+}
+
+let calculate = () => {
+        result.value = eval(input.value);
+}
+
+let sin = () => {
+        result.value = Math.sin(result.value);
+}
+
+let cos = () => {
+        result.value = Math.cos(result.value);
+}
+
+let tan = () => {
+        result.value = Math.tan(result.value);
+}
+
+let fact = () => {
+        var i, number, x;
+        x = 1
+        number = result.value;
+        for (i = 1; i <= number; i++) {
+                x = x * i;
+        }
+        i = i - 1;
+        result.value = x;
+}
+
+let pi = () => {
+        input.value = 3.14;
+}
+
+let log = () => {
+        result.value = Math.log(result.value);
+}
+
+let root = () => {
+        result.value = Math.sqrt(result.value, 2);
+}
+
+let e = () => {
+        input.value = 2.71;
+}
+
+let pow = () => {
+        result.value = Math.pow(result.value, 2);
+}
+
+backBtn.addEventListener('click', () => {
+        scientificBtnsBox.classList.toggle('active');
+});
+
+</script>
+</body>
+
+</html>
+
+ 
+  
